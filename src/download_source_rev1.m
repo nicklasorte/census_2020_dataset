@@ -28,7 +28,13 @@ opts = weboptions("Timeout", 300, "UserAgent", "census_2020_dataset (MATLAB webs
 last_err = "";
 for try_idx = 1:num_retries
     try
-        websave(local_file, url, opts);
+        fetch_url = url;
+        if try_idx > 1 && ~contains(url, "?")
+            % The Census Bureau web firewall can keep rejecting one exact URL
+            % (seen for tl_2026_15_tract.zip); a query string gets a fresh response.
+            fetch_url = url + "?try=" + try_idx;
+        end
+        websave(local_file, fetch_url, opts);
         if is_valid_file(local_file, ext)
             return
         end
