@@ -1,0 +1,417 @@
+PEA_Num,PEA_Name,POP_2010,EA_Num
+1,"New York, NY",25237061,10
+2,"Los Angeles, CA",19410169,160
+3,"Chicago, IL",9366713,64
+4,"San Francisco, CA",9027937,163
+5,"Baltimore, MD-Washington, DC",7842134,13
+6,"Philadelphia, PA",7587252,12
+7,"Boston, MA",6776035,3
+8,"Dallas, TX",6452472,127
+9,"Miami, FL",6291880,31
+10,"Houston, TX",5891999,131
+11,"Atlanta, GA",5435312,40
+12,"Detroit, MI",5137479,57
+13,"Orlando, FL",4562642,30
+14,"Cleveland, OH",4096678,55
+15,"Phoenix, AZ",3817117,158
+16,"Seattle, WA",3792218,170
+17,"Minneapolis-St. Paul, MN",3390091,107
+18,"San Diego, CA",3095313,161
+19,"Portland, OR",3022643,167
+20,"Denver, CO",2789669,141
+21,"Tampa, FL",2783243,34
+22,"Sacramento, CA",2722415,164
+23,"Pittsburgh, PA",2399667,53
+24,"Saint Louis, MO",2396938,96
+25,"Cincinnati, OH",2196428,49
+26,"Las Vegas, NV",2151455,153
+27,"Salt Lake City, UT",2142152,152
+28,"San Antonio, TX",1999689,134
+29,"Jacksonville, FL",1918264,29
+30,"Kansas City, MO",1810075,99
+31,"Indianapolis, IN",1769011,67
+32,"Nashville, TN",1748445,71
+33,"Virginia Beach, VA",1698835,20
+34,"Fresno, CA",1676476,162
+35,"Austin, TX",1628809,130
+36,"New Orleans, LA",1622143,83
+37,"Columbus, OH",1582917,51
+38,"Milwaukee, WI",1555908,63
+39,"Oklahoma City, OK",1446527,125
+40,"Birmingham, AL",1399686,78
+41,"Syracuse, NY",1371959,6
+42,"Honolulu, HI",1360301,172
+43,"Charlotte, NC",1327006,23
+44,"Rochester, NY",1316146,7
+45,"Raleigh, NC",1302381,19
+46,"Little Rock, AR",1275690,90
+47,"Brownsville, TX",1264091,133
+48,"Harrisburg, PA",1244058,11
+49,"Albany, NY",1222542,5
+50,"Greenville, SC",1220968,41
+51,"Louisville, KY",1194260,70
+52,"Charleston, WV",1191822,48
+53,"Tucson, AZ",1159029,159
+54,"Buffalo, NY",1135509,8
+55,"Huntsville, AL",1105409,74
+56,"Kalamazoo, MI",1095827,62
+57,"Richmond, VA",1080661,15
+58,"Bloomington, IN",1069729,67
+59,"Memphis, TN",1039627,73
+60,"Manchester, NH",1025620,3
+61,"Toledo, OH",1023081,56
+62,"Dayton, OH",1019932,50
+63,"Tulsa, OK",969078,124
+64,"South Bend, IN",954029,65
+65,"Cape Coral, FL",940274,32
+66,"Lansing, MI",922885,57
+67,"Sarasota, FL",897121,33
+68,"Grand Rapids, MI",866423,62
+69,"Springfield, MA",861286,10
+70,"Eugene, OR",859318,166
+71,"Knoxville, TN",837142,44
+72,"Tallahassee, FL",801642,35
+73,"El Paso, TX",800647,157
+74,"Chattanooga, TN",797154,43
+75,"Albuquerque, NM",794125,156
+76,"Reno, NV",786501,151
+77,"Portland, ME",784594,2
+78,"Greensboro, NC",781289,18
+79,"Hattiesburg, MS",780833,77
+80,"Omaha, NE",769108,118
+81,"Saginaw, MI",767362,57
+82,"Baton Rouge, LA",756008,84
+83,"Fort Wayne, IN",748680,66
+84,"Mobile, AL",724956,80
+85,"Charleston, SC",703499,26
+86,"Frankfort, KY",685317,47
+87,"Pensacola, FL",684856,81
+88,"Frederick, MD",678674,13
+89,"Columbia, SC",646895,24
+90,"Jackson, MS",646279,77
+91,"Colorado Springs, CO",645613,141
+92,"Decatur, IL",644865,68
+93,"Lafayette, LA",638768,85
+94,"Waco, TX",638395,127
+95,"Bluefield, WV",631120,47
+96,"Richmond, KY",620049,47
+97,"Mankato, MN",617663,107
+98,"Johnson City, TN",609299,45
+99,"Tupelo, MS",599462,75
+100,"Greenville, NC",571905,21
+101,"Wichita, KS",564245,122
+102,"Grand Junction, CO",562340,141
+103,"Winchester, VA",556408,13
+104,"Fort Collins, CO",552455,141
+105,"Augusta, GA",552150,27
+106,"Zanesville, OH",548017,51
+107,"Bangor, ME",543767,1
+108,"Des Moines, IA",543000,100
+109,"Rocky Mount, NC",536809,19
+110,"Jackson, TN",533539,73
+111,"Fayetteville, AR",527374,92
+112,"Bowling Green, KY",526621,71
+113,"Erie, PA",513834,54
+114,"Morgantown, WV",512830,53
+115,"Asheville, NC",512200,42
+116,"Rockford, IL",509762,64
+117,"La Grange, GA",501771,40
+118,"Richmond, IN",496850,67
+119,"Yakima, WA",496571,169
+120,"Shreveport, LA",492213,88
+121,"Altoona, PA",490867,9
+122,"Madison, WI",488073,104
+123,"Mansfield, OH",486730,55
+124,"Olympia, WA",482135,170
+125,"Alton, IL",476174,96
+126,"Casa Grande, AZ",475024,158
+127,"Evansville, IN",474251,69
+128,"Macon, GA",472241,38
+129,"Springfield, IL",471823,97
+130,"Spokane, WA",471221,147
+131,"Sanford, NC",468358,19
+132,"Corpus Christi, TX",467429,132
+133,"Nacogdoches, TX",464704,131
+134,"Newark, OH",463800,51
+135,"Beaumont, TX",460666,87
+136,"Williamsport, PA",454792,10
+137,"Eau Claire, WI",452434,107
+138,"Burlington, VT",452191,4
+139,"Hot Springs, AR",443880,90
+140,"Fredericksburg, VA",438705,13
+141,"Brainerd, MN",435203,107
+142,"Merced, CA",430256,163
+143,"Keene, NH",427275,3
+144,"Paris, TX",423195,127
+145,"Columbia, TN",422947,71
+146,"Wilmington, NC",420413,25
+147,"Salisbury, MD",419355,14
+148,"Bellingham, WA",412316,170
+149,"Biloxi, MS",411066,82
+150,"Rolla, MO",405037,94
+151,"Winston-Salem, NC",398071,18
+152,"Tyler, TX",397075,127
+153,"Fond du Lac, WI",395357,63
+154,"Myrtle Beach, SC",394573,25
+155,"Appleton, WI",392660,60
+156,"Boise City, ID",392365,150
+157,"Yuma, AZ",390768,160
+158,"Helena, MT",378009,146
+159,"Valdosta, GA",373343,37
+160,"Victoria, TX",371551,131
+161,"Carbondale, IL",368043,96
+162,"Elizabethtown, KY",364517,70
+163,"Davenport, IA",363256,102
+164,"Montgomery, AL",363237,79
+165,"Rome, GA",362053,40
+166,"Redding, CA",361652,165
+167,"Harrisonburg, VA",360886,16
+168,"Peoria, IL",360552,101
+169,"Goldsboro, NC",358900,21
+170,"Dothan, AL",358396,36
+171,"Fort Smith, AR",356101,91
+172,"Duluth, MN",354182,109
+173,"Blacksburg, VA",352838,17
+174,"Springfield, MO",352596,94
+175,"Southaven, MS",349748,73
+176,"Ames, IA",348248,100
+177,"Savannah, GA",347611,28
+178,"Sedalia, MO",346580,99
+179,"Burlington, IA",346354,100
+180,"Flagstaff, AZ",345454,154
+181,"Texarkana, TX",343206,127
+182,"Cedar Rapids, IA",342108,103
+183,"Columbia, MO",340194,98
+184,"Ruston, LA",338416,89
+185,"Marquette, MI",335871,59
+186,"Rock Hill, SC",335865,23
+187,"Pocatello, ID",328567,148
+188,"Jamestown, NY",325075,8
+189,"Alexandria, LA",324637,86
+190,"Bozeman, MT",324077,144
+191,"Petersburg, VA",321175,15
+192,"Fayetteville, NC",319431,22
+193,"Saint Joseph, MO",318414,99
+194,"State College, PA",317863,9
+195,"Lewiston, ID",317751,147
+196,"Cape Girardeau, MO",315713,96
+197,"Wheeling, WV",312837,52
+198,"Jonesboro, AR",311312,95
+199,"Dalton, GA",310645,40
+200,"Danville, VA",310385,18
+201,"Eagle Pass, TX",304111,134
+202,"Columbus, GA",303722,39
+203,"Traverse City, MI",303041,61
+204,"Owensboro, KY",301206,69
+205,"Douglas City, CA",300915,163
+206,"Wenatchee, WA",300767,169
+207,"Brunswick, GA",298749,29
+208,"Salisbury, NC",297865,23
+209,"Green Bay, WI",296366,59
+210,"Binghamton, NY",295081,6
+211,"Ardmore, OK",291829,125
+212,"Anchorage, AK",291826,171
+213,"Bend, OR",289034,167
+214,"Lincoln, NE",285407,119
+215,"Hickory, NC",282468,46
+216,"Joplin, MO",280505,93
+217,"Lubbock, TX",278831,137
+218,"Wausau, WI",278831,108
+219,"Mason City, IA",277029,100
+220,"Odessa, TX",274002,135
+221,"Laredo, TX",269622,134
+222,"Morristown, TN",268978,44
+223,"Dubuque, IA",264752,104
+224,"De Kalb, IL",257786,64
+225,"La Crosse, WI",257376,105
+226,"Lima, OH",256337,56
+227,"Watertown, NY",255260,6
+228,"Roanoke, VA",252548,17
+229,"Saint George, UT",252481,153
+230,"Lumberton, NC",252467,22
+231,"Fremont, NE",249287,118
+232,"Topeka, KS",245402,123
+233,"Shelby, NC",244153,23
+234,"Lexington, NC",242524,18
+235,"Amarillo, TX",241798,138
+236,"Grand Island, NE",240913,120
+237,"Hinesville, GA",240344,28
+238,"Florence, SC",239989,25
+239,"Kannapolis, NC",238596,23
+240,"Charlottesville, VA",234712,15
+241,"Dublin, GA",233302,38
+242,"Lake Charles, LA",231201,86
+243,"Paducah, KY",230924,72
+244,"Manhattan, KS",230920,123
+245,"West Plains, MO",229798,94
+246,"Auburn, AL",228786,39
+247,"Nampa, ID",227487,150
+248,"Sumter, SC",223344,24
+249,"Bryan, TX",221455,131
+250,"Las Cruces, NM",221221,157
+251,"Salina, KS",219945,122
+252,"Sioux City, IA",218063,117
+253,"Baraboo, WI",216417,104
+254,"Merrill, WI",216161,108
+255,"Greenville, MS",214872,76
+256,"Lynchburg, VA",213977,17
+257,"Cheyenne, WY",213445,143
+258,"Cullman, AL",210229,78
+259,"Roswell, NM",209606,136
+260,"Alpena, MI",208861,58
+261,"Fargo, ND",208777,113
+262,"Hilton Head Island, SC",208100,28
+263,"Santa Fe, NM",201081,139
+264,"Kodiak, AK",200813,171
+265,"Winona, MN",197462,106
+266,"Lenoir, NC",197430,46
+267,"Sheboygan, WI",196949,63
+268,"Clinton, IA",196679,102
+269,"Racine, WI",195408,63
+270,"Ottawa, IL",193858,64
+271,"Elmira, NY",193433,7
+272,"Brownwood, TX",192692,127
+273,"Bloomington, IL",186133,64
+274,"Twin Falls, ID",185790,149
+275,"Corsicana, TX",184725,127
+276,"Rapid City, SD",183639,115
+277,"Hutchinson, KS",183101,122
+278,"Bartlesville, OK",179889,124
+279,"Logan, UT",179703,152
+280,"Garden City, KS",177150,122
+281,"Muskogee, OK",177148,124
+282,"Galesburg, IL",173607,101
+283,"Plattsburgh, NY",173097,4
+284,"Greenwood, SC",171848,41
+285,"Gallup, NM",170223,156
+286,"Sioux Falls, SD",169468,116
+287,"Kenosha, WI",166426,64
+288,"Abilene, TX",165252,128
+289,"Price, UT",164900,152
+290,"Watertown, SD",163741,116
+291,"Rockingham, NC",162684,18
+292,"Pueblo, CO",159063,140
+293,"Lawrenceburg, TN",158283,71
+294,"Waterloo, IA",155366,100
+295,"Stillwater, OK",152050,124
+296,"Pottsville, PA",148289,12
+297,"Pendleton, OR",146709,168
+298,"Fairbanks, AK",145928,171
+299,"Kirksville, MO",144847,99
+300,"Selma, AL",144376,79
+301,"Rochester, MN",144248,106
+302,"Enid, OK",143731,125
+303,"Great Falls, MT",143015,145
+304,"Mount Airy, NC",143013,18
+305,"Altus, OK",142644,126
+306,"Wichita Falls, TX",142252,127
+307,"Yankton, SD",141973,116
+308,"Americus, GA",138886,38
+309,"Elizabeth City, NC",137035,20
+310,"Farmington, MO",133395,96
+311,"Trinidad, CO",132721,140
+312,"Farmington, NM",130044,155
+313,"Lockhart, TX",128849,130
+314,"Jacksonville, TX",127971,127
+315,"Sheridan, WY",127963,144
+316,"Rock Springs, WY",125434,143
+317,"Beatrice, NE",124932,119
+318,"Thief River Falls, MN",124110,110
+319,"Albany, GA",122863,37
+320,"San Angelo, TX",119412,129
+321,"Batesville, IN",118693,49
+322,"Minot, ND",116439,111
+323,"Socorro, NM",114543,156
+324,"Honesdale, PA",110191,10
+325,"Bismarck, ND",108779,112
+326,"Fergus Falls, MN",108648,113
+327,"Orangeburg, SC",107676,24
+328,"Winslow, AZ",107449,154
+329,"Kingsville, TX",104558,132
+330,"Olney, IL",102976,69
+331,"Plainview, TX",102732,137
+332,"Bennettsville, SC",102615,23
+333,"Sidney, OH",102382,50
+334,"Pampa, TX",100685,138
+335,"Natchitoches, LA",99546,88
+336,"Grand Forks, ND",98461,110
+337,"Mineral Wells, TX",95311,127
+338,"Durango, CO",91716,155
+339,"Scottsbluff, NE",91571,142
+340,"Clovis, NM",84529,138
+341,"Alamogordo, NM",84294,157
+342,"Mitchell, SD",83465,116
+343,"Pecos, TX",82332,135
+344,"Clanton, AL",82318,78
+345,"Newberry, SC",81339,24
+346,"Franklin, NC",80814,40
+347,"New Roads, LA",79775,84
+348,"Aberdeen, SD",79541,114
+349,"Marion, NC",78393,46
+350,"Forrest City, AR",78309,73
+351,"Dickinson, ND",78183,112
+352,"Gonzales, TX",77549,134
+353,"Watseka, IL",77440,64
+354,"New London, WI",76906,60
+355,"Casper, WY",75450,143
+356,"Colville, WA",74653,147
+357,"Espanola, NM",73183,139
+358,"Marble Falls, TX",72548,130
+359,"Sterling, CO",72175,141
+360,"Juneau, AK",71664,171
+361,"Richfield, UT",71373,152
+362,"Payette, ID",70406,150
+363,"Big Spring, TX",70297,135
+364,"Butte, MT",69762,146
+365,"Vernon, TX",69603,127
+366,"Pullman, WA",68665,147
+367,"Moberly, MO",66156,98
+368,"Concordia, KS",65577,122
+369,"Red Oak, IA",65203,118
+370,"Washington, IA",64135,103
+371,"Wytheville, VA",62965,17
+372,"Colby, KS",62951,141
+373,"Walla Walla, WA",62859,168
+374,"North Platte, NE",61592,121
+375,"Deming, NM",59503,158
+376,"Hereford, TX",59127,138
+377,"Demopolis, AL",57694,77
+378,"Waynesboro, GA",57502,27
+379,"Sault Ste. Marie, MI",56264,58
+380,"Escanaba, MI",55155,59
+381,"Del Rio, TX",54479,129
+382,"Riverton, WY",53468,143
+383,"Creston, IA",50709,100
+384,"Manchester, IA",50223,104
+385,"Hannibal, MO",49159,97
+386,"Barnwell, SC",49027,27
+387,"Wahpeton, ND",48521,113
+388,"Atlantic, IA",47170,118
+389,"McCook, NE",47014,120
+390,"Snyder, TX",45514,128
+391,"Ontario, OR",38735,150
+392,"Maryville, MO",37191,99
+393,"Macon, MO",36158,99
+394,"Martin, SD",34651,115
+395,"Jamestown, ND",34328,113
+396,"Winterset, IA",34315,100
+397,"Aliceville, AL",34310,75
+398,"South Sioux City, NE",33946,117
+399,"Lampasas, TX",25808,127
+400,"Muleshoe, TX",25496,138
+401,"Floydada, TX",25065,137
+402,"Brady, TX",23231,129
+403,"Lewistown, MT",21970,145
+404,"Kanab, UT",21871,154
+405,"Jackson, WY",21294,148
+406,"Anamosa, IA",20638,103
+407,"Salmon, ID",15195,148
+408,"Ballinger, TX",14964,129
+409,"Haskell, TX",14772,128
+410,"Valentine, NE",11796,115
+411,"Van Horn, TX",5874,157
+412,Puerto Rico,3725789,174
+413,Guam-Northern Mariana Islands,213241,173
+414,US Virgin Islands,106405,174
+415,American Samoa,55519,175
+416,Gulf of Mexico,,176

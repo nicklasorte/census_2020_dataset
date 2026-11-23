@@ -1,0 +1,14 @@
+current_county_fips,cfr_county_fips,note
+02063,02261,Chugach Census Area; created 2019 from Valdez-Cordova Census Area (02261)
+02066,02261,Copper River Census Area; created 2019 from Valdez-Cordova Census Area (02261)
+02158,02270,Kusilvak Census Area; renamed 2015 from Wade Hampton Census Area (02270)
+46102,46113,Oglala Lakota County; renamed 2015 from Shannon County (46113)
+09110,09001,Capitol Planning Region; Connecticut planning regions replaced counties in 2022; all Connecticut counties are in PEA 1
+09120,09001,Greater Bridgeport Planning Region; see 09110
+09130,09001,Lower Connecticut River Valley Planning Region; see 09110
+09140,09001,Naugatuck Valley Planning Region; see 09110
+09150,09001,Northeastern Connecticut Planning Region; see 09110
+09160,09001,Northwest Hills Planning Region; see 09110
+09170,09001,South Central Connecticut Planning Region; see 09110
+09180,09001,Southeastern Connecticut Planning Region; see 09110
+09190,09001,Western Connecticut Planning Region; see 09110

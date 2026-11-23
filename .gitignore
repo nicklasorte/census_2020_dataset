@@ -1,0 +1,5 @@
+# Downloaded Census and TIGER/Line files (about 7 GB); rebuilt by the pipeline
+cache/
+tools/reference_python/out/
+*.asv
+__pycache__/
