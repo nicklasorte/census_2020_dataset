@@ -24,7 +24,8 @@ checks.cenpop = table(cp.STATEFP + cp.COUNTYFP + cp.TRACTCE, cp.POPULATION, ...
 z = download_source_rev1(cfg.url.gazetteer, check_folder, cfg.tf_redownload, cfg.download_retries);
 txt_files = unzip(z, fullfile(check_folder, "gazetteer"));
 txt = string(txt_files(endsWith(txt_files, ".txt")));
-o = detectImportOptions(txt, "Delimiter", "\t", "VariableNamingRule", "preserve");
+% Gazetteer files up to 2025 are tab-delimited; the 2026 file uses "|".
+o = detectImportOptions(txt, "Delimiter", ["\t", "|"], "VariableNamingRule", "preserve");
 o.VariableNames = strtrim(o.VariableNames);
 o = setvartype(o, ["USPS", "GEOID"], "string");
 gz = readtable(txt, o);

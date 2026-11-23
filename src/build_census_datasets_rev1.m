@@ -50,15 +50,15 @@ checks = read_check_sources_rev1(cfg);
 report = validate_census_datasets_rev1(d, cfg.expected, checks);
 
 %%%%%%%%%% Save
-new_full_census_2020 = d.F1; %#ok<NASGU>
+new_full_census_2020 = d.F1;
 save(fullfile(cfg.data_folder, "Cascade_new_full_census_2020.mat"), "new_full_census_2020", "-v7");
 new_full_census_2020 = d.F2;
 save(fullfile(cfg.data_folder, "Cascade_new_full_census_2023_UA.mat"), "new_full_census_2020", "-v7");
-cell_ua_census_data_2020 = d.ua; %#ok<NASGU>
+cell_ua_census_data_2020 = d.ua;
 save(fullfile(cfg.data_folder, "cell_urbanarea_census_data_2020_2023.mat"), "cell_ua_census_data_2020", "-v7");
-cell_ua_census_data_2020 = ua_contours; %#ok<NASGU>
+cell_ua_census_data_2020 = ua_contours;
 save(fullfile(cfg.cache_folder, "cell_urbanarea_census_data_2020_2023_contours.mat"), "cell_ua_census_data_2020", "-v7.3");
-cell_pea_census_data_2020 = d.pea; %#ok<NASGU>
+cell_pea_census_data_2020 = d.pea;
 save(fullfile(cfg.data_folder, "cell_pea_census_data_2020_2023.mat"), "cell_pea_census_data_2020", "-v7");
 
 tract_csv = array2table(new_full_census_2020, 'VariableNames', ...

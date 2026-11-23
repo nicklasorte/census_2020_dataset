@@ -48,7 +48,7 @@ for state_idx = 1:num_states
         block_shp = read_shapefile_zip_rev1(block_zip, fullfile(cfg.cache_folder, "unzip"));
         tract_shp = read_shapefile_zip_rev1(tract_zip, fullfile(cfg.cache_folder, "unzip"));
         [S.ts, S.up, S.bc] = summarize_state_blocks_rev1(block_shp, state_tracts, tract_shp);
-        ts = S.ts; up = S.up; bc = S.bc; %#ok<NASGU> saved below
+        ts = S.ts; up = S.up; bc = S.bc;
         save(cache_file, "ts", "up", "bc");
         rmdir(fileparts(block_shp), "s");   % unzipped block files are large; keep only the zip
     end
