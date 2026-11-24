@@ -37,6 +37,12 @@ cfg.url.gazetteer = "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/"
 cfg.url.cenpop    = "https://www2.census.gov/geo/docs/reference/cenpop2020/tract/CenPop2020_Mean_TR.txt";
 cfg.url.ecfr_pea  = "https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-47.xml?part=27&subpart=A";
 
+%%%%%%%%%% Legacy files (Census_Functions, built from TIGER/Line 2023), for compare_legacy_datasets_rev1
+legacy = "https://raw.githubusercontent.com/nicklasorte/Census_Functions/main/";
+cfg.url.legacy_2020 = legacy + "Cascade_new_full_census_2020.mat";
+cfg.url.legacy_ua   = legacy + "Cascade_new_full_census_2023_UA.mat";
+cfg.url.legacy_pea  = legacy + "cell_pea_census_data_2020_2023.mat";
+
 %%%%%%%%%% Committed raw files (small, kept in data/raw)
 cfg.file.pea_names      = fullfile(cfg.raw_folder, "pea_names_DA-14-759.csv");     % FCC DA 14-759, Appendix A
 cfg.file.pea_counties   = fullfile(cfg.raw_folder, "ecfr_47cfr_part27_subpartA.xml"); % 47 CFR Part 27 App. A to Subpart A
