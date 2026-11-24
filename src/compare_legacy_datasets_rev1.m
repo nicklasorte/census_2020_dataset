@@ -81,7 +81,7 @@ items = [
     "Tracts with a different population than legacy Cascade_new_full_census_2020", nnz(cmp.DELTA_POP_2020)
     "People in the wrong tract in legacy Cascade_new_full_census_2020 (sum of absolute deltas / 2)", s(abs(cmp.DELTA_POP_2020)) / 2
     "Tracts with a different population than legacy Cascade_new_full_census_2023_UA", nnz(cmp.DELTA_POP_UA)
-    "Tracts whose location changed (TIGER/Line 2023 to 2026 internal point)", nnz(moved)
+    "Tracts whose location changed (TIGER/Line 2023 to " + cfg.tiger_year + " internal point)", nnz(moved)
     "Median location shift of changed tracts (m)", median(shift_m(moved))
     "95th percentile location shift of changed tracts (m)", prctile(shift_m(moved), 95)
     "Largest location shift (m)", max(shift_m)
