@@ -1,6 +1,6 @@
 function manifest = write_manifest_rev1(cfg)
 %WRITE_MANIFEST_REV1 Record the size and SHA-256 hash of every source file.
-%   manifest = write_manifest_rev1(cfg) writes data/raw/MANIFEST.csv for the
+%   manifest = write_manifest_rev1(cfg) writes cfg.file.manifest for the
 %   downloaded files in the cache folder (not committed) and the raw files
 %   committed in data/raw, so a later run can confirm identical inputs.
 
@@ -13,6 +13,11 @@ files = strings(0, 1);
 for s = subs
     f = dir(fullfile(cfg.cache_folder, s, "*.*"));
     f = f(~[f.isdir]);
+    if s ~= "check"
+        f = f(contains({f.name}, "tl_" + cfg.tiger_year + "_"));   % only this release's TIGER/Line files
+    else
+        f = f(~endsWith({f.name}, "_Gaz_tracts_national.zip") | startsWith({f.name}, string(cfg.gazetteer_year)));
+    end
     files = [files; string(fullfile({f.folder}, {f.name}))']; %#ok<AGROW> few folders
 end
 r = dir(fullfile(cfg.raw_folder, "**", "*.*"));
@@ -38,5 +43,5 @@ for k = 1:num_files
     sha256(k) = sha256_file_rev1(files(k));
 end
 manifest = sortrows(table(location, file_name, bytes, sha256), ["location", "file_name"]);
-writetable(manifest, fullfile(cfg.raw_folder, "MANIFEST.csv"));
+writetable(manifest, cfg.file.manifest);
 end

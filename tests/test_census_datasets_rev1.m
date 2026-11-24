@@ -11,12 +11,16 @@ function setupOnce(tc)
 repo_folder = string(fileparts(fileparts(mfilename("fullpath"))));
 addpath(fullfile(repo_folder, "src"));
 tc.TestData.cfg = census_config_rev1(repo_folder);
-data = fullfile(repo_folder, "data");
+tc.TestData.d = load_datasets(fullfile(repo_folder, "data"));
+tc.TestData.cfg2023 = census_config_rev1(repo_folder, fullfile(repo_folder, "cache"), 2023);
+tc.TestData.d2023 = load_datasets(tc.TestData.cfg2023.data_folder);
+end
+
+function d = load_datasets(data)
 d.F1 = getfield(load(fullfile(data, "Cascade_new_full_census_2020.mat"), "new_full_census_2020"), "new_full_census_2020");
 d.F2 = getfield(load(fullfile(data, "Cascade_new_full_census_2023_UA.mat"), "new_full_census_2020"), "new_full_census_2020");
 d.ua = getfield(load(fullfile(data, "cell_urbanarea_census_data_2020_2023.mat"), "cell_ua_census_data_2020"), "cell_ua_census_data_2020");
 d.pea = getfield(load(fullfile(data, "cell_pea_census_data_2020_2023.mat"), "cell_pea_census_data_2020"), "cell_pea_census_data_2020");
-tc.TestData.d = d;
 end
 
 %%%%%%%%%% Committed data
@@ -149,6 +153,38 @@ verifyEqual(tc, T.LOCATION_CHANGED, double(T.LAT_NEW ~= T.LAT_LEGACY | T.LON_NEW
 verifyTrue(tc, all(T.LOCATION_SHIFT_M(T.LOCATION_CHANGED == 0) == 0));
 verifyEqual(tc, T.PEA_NEW, F2(:, 6));
 verifyEqual(tc, sum(T.DELTA_POP_2020), 0);   % same total, different tracts
+end
+
+function testTiger2023Validation(tc)
+% The TIGER/Line 2023 build (data/tiger2023) passes the same checks.
+report = validate_census_datasets_rev1(tc.TestData.d2023, tc.TestData.cfg2023.expected);
+verifyTrue(tc, all(report.Pass));
+end
+
+function testTiger2023MatchesLegacy(tc)
+% The 2023 build equals the legacy Census_Functions UA file, except the two
+% Connecticut water tracts whose repeated tract code the legacy code mixed up.
+cfg = tc.TestData.cfg2023;
+try
+    f = download_source_rev1(cfg.url.legacy_ua, fullfile(cfg.cache_folder, "legacy"));
+catch err
+    assumeFail(tc, "Legacy file unavailable: " + err.message);
+end
+L = load(f, "new_full_census_2020").new_full_census_2020;
+F2 = tc.TestData.d2023.F2;
+verifyEqual(tc, F2(:, 1:4), L(:, 1:4));
+same_ua = F2(:, 5) == L(:, 5) | (isnan(F2(:, 5)) & isnan(L(:, 5)));
+verifyEqual(tc, compose("%011d", F2(~same_ua, 1)), ["09120990000"; "09170990000"]);
+end
+
+function testTiger2026And2023ShareTractsAndPopulation(tc)
+% Same tracts and populations in both releases; only internal points differ.
+a = tc.TestData.d.F2;
+b = tc.TestData.d2023.F2;
+[tf, loc] = ismember(a(:, 1), b(:, 1));
+verifyTrue(tc, all(tf));
+verifyEqual(tc, a(:, 4), b(loc, 4));
+verifyEqual(tc, a(:, 6), b(loc, 6));
 end
 
 %%%%%%%%%% Build functions

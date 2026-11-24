@@ -10,16 +10,27 @@ function cfg = census_config_rev1(repo_folder, cache_folder, tiger_year)
 arguments
     repo_folder (1,1) string
     cache_folder (1,1) string = fullfile(repo_folder, "cache")
-    tiger_year (1,1) double {mustBeInteger, mustBeInRange(tiger_year, 2023, 2100)} = 2026
+    tiger_year (1,1) double {mustBeInteger, mustBeInRange(tiger_year, 2023, 2100)} = 2026  % keep equal to cfg.default_tiger_year
 end
 
 cfg = struct();
 cfg.repo_folder  = repo_folder;
 cfg.cache_folder = cache_folder;
-cfg.raw_folder     = fullfile(repo_folder, "data", "raw");
-cfg.derived_folder = fullfile(repo_folder, "data", "derived");
-cfg.data_folder    = fullfile(repo_folder, "data");
-cfg.report_folder  = fullfile(repo_folder, "reports");
+cfg.raw_folder   = fullfile(repo_folder, "data", "raw");
+% The most recent release (default_tiger_year) builds into data/ and
+% reports/; any other release builds into data/tiger<year>/ and
+% reports/tiger<year>/, so both can live in the repo side by side.
+cfg.default_tiger_year = 2026;
+if tiger_year == cfg.default_tiger_year
+    cfg.data_folder   = fullfile(repo_folder, "data");
+    cfg.report_folder = fullfile(repo_folder, "reports");
+    cfg.file.manifest = fullfile(cfg.raw_folder, "MANIFEST.csv");
+else
+    cfg.data_folder   = fullfile(repo_folder, "data", "tiger" + tiger_year);
+    cfg.report_folder = fullfile(repo_folder, "reports", "tiger" + tiger_year);
+    cfg.file.manifest = fullfile(cfg.data_folder, "MANIFEST.csv");
+end
+cfg.derived_folder = fullfile(cfg.data_folder, "derived");
 
 %%%%%%%%%% Source vintages (most recent releases as of 2026-11-23)
 cfg.tiger_year     = tiger_year; % TIGER/Line shapefiles: tracts, blocks, urban areas, states (2026 = most recent)

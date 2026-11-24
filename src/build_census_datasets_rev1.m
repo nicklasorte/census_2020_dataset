@@ -2,14 +2,15 @@ function [d, report] = build_census_datasets_rev1(cfg)
 %BUILD_CENSUS_DATASETS_REV1 Build, validate, and save every dataset.
 %   [d, report] = build_census_datasets_rev1(cfg)
 %
-%   Outputs, saved in data/ with the legacy file and variable names:
+%   Outputs, saved in cfg.data_folder (data/ for the most recent TIGER/Line
+%   release, data/tiger<year>/ otherwise) with the legacy file and variable names:
 %     Cascade_new_full_census_2020.mat          new_full_census_2020      (F1)
 %     Cascade_new_full_census_2023_UA.mat       new_full_census_2020      (F2)
 %     cell_urbanarea_census_data_2020_2023.mat  cell_ua_census_data_2020
 %     cell_pea_census_data_2020_2023.mat        cell_pea_census_data_2020
-%   plus data/census_2020_tracts.csv (F2 as text), data/raw/MANIFEST.csv,
-%   reports/validation_report.md, and, in the cache folder, the urban area
-%   cell with boundaries (cell_urbanarea_census_data_2020_2023_contours.mat).
+%   plus census_2020_tracts.csv (F2 as text), cfg.file.manifest,
+%   validation_report.md in cfg.report_folder, and, in the cache folder, the
+%   urban area cell with boundaries (..._contours_tiger<year>.mat).
 %   The file names keep "2023" so that existing code loads them unchanged.
 
 arguments
@@ -57,7 +58,7 @@ save(fullfile(cfg.data_folder, "Cascade_new_full_census_2023_UA.mat"), "new_full
 cell_ua_census_data_2020 = d.ua;
 save(fullfile(cfg.data_folder, "cell_urbanarea_census_data_2020_2023.mat"), "cell_ua_census_data_2020", "-v7");
 cell_ua_census_data_2020 = ua_contours;
-save(fullfile(cfg.cache_folder, "cell_urbanarea_census_data_2020_2023_contours.mat"), "cell_ua_census_data_2020", "-v7.3");
+save(fullfile(cfg.cache_folder, "cell_urbanarea_census_data_2020_2023_contours_tiger" + cfg.tiger_year + ".mat"), "cell_ua_census_data_2020", "-v7.3");
 cell_pea_census_data_2020 = d.pea;
 save(fullfile(cfg.data_folder, "cell_pea_census_data_2020_2023.mat"), "cell_pea_census_data_2020", "-v7");
 

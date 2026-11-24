@@ -25,7 +25,17 @@ the committed block results in `data/derived/`.
 
 ## Outputs
 
-All in `data/`.
+Two builds are committed, with the same file names and columns:
+
+- `data/`: TIGER/Line 2026, the most recent release (default).
+- `data/tiger2023/`: TIGER/Line 2023, the release the legacy Census_Functions
+  files used. Use it to keep tract locations identical to past results.
+
+Populations, urban area codes, and PEAs are the same in both (every release
+carries the 2020 Census counts); only the tract internal points differ for
+about 19,700 tracts. To rebuild either one, set `tiger_year` in
+`init_build_census_datasets_rev1`. Each folder has its own `derived/` block
+results, and `data/tiger2023/MANIFEST.csv` lists the 2023 sources.
 
 | File | Variable | Size |
 |---|---|---|

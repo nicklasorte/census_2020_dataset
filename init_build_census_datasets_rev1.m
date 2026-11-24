@@ -13,7 +13,9 @@ clear; close all;
 repo_folder = string(fileparts(mfilename("fullpath")));
 addpath(fullfile(repo_folder, "src"));
 
-cfg = census_config_rev1(repo_folder);   % second argument: a different cache folder
+tiger_year = 2026;   % 2026: most recent release, builds into data/. 2023: the release the
+                     % legacy Census_Functions files used, builds into data/tiger2023/.
+cfg = census_config_rev1(repo_folder, fullfile(repo_folder, "cache"), tiger_year);
 cfg.tf_rebuild_blocks = false;           % true: redo the block pass (about 6 GB)
 cfg.tf_redownload     = false;           % true: fetch every source again
 

@@ -1,25 +1,18 @@
 %INIT_REPRODUCE_LEGACY_2023_REV1 Rebuild from TIGER/Line 2023 and compare with the legacy files.
 %   The legacy Census_Functions files were built from TIGER/Line 2023. This
-%   script runs the same build with tiger_year = 2023 into cache/build_2023
-%   (data/ is not touched), then compares every legacy column element by
-%   element, and writes reports/legacy_2023_reproduction.md.
+%   script runs the build with tiger_year = 2023 (outputs in data/tiger2023/),
+%   then compares every legacy column element by element, and writes
+%   reports/legacy_2023_reproduction.md.
 %
-%   First run downloads the 2023 tract and block files (about 6 GB).
+%   Uses the committed data/tiger2023/derived block results; delete them or
+%   set cfg.tf_rebuild_blocks = true to redo the block pass (about 6 GB).
 
 clear; close all;
 repo_folder = string(fileparts(mfilename("fullpath")));
 addpath(fullfile(repo_folder, "src"));
 
 cfg = census_config_rev1(repo_folder, fullfile(repo_folder, "cache"), 2023);
-out_folder = fullfile(cfg.cache_folder, "build_2023");
-cfg.derived_folder = fullfile(out_folder, "derived");
-cfg.data_folder = out_folder;
-cfg.report_folder = out_folder;
-cfg.tf_rebuild_blocks = false;   % derived_folder starts empty, so the block pass runs (resuming from cache/block_summary)
-cfg.tf_write_manifest = false;
-if ~isfolder(out_folder)
-    mkdir(out_folder);
-end
+cfg.tf_rebuild_blocks = false;   % uses data/tiger2023/derived when present
 
 d = build_census_datasets_rev1(cfg);
 

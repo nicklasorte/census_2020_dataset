@@ -19,8 +19,14 @@ init_build_census_datasets_rev1        % build, validate, save (minutes; uses da
 results = runtests("tests")            % tests
 ```
 
-Set `cfg.tf_rebuild_blocks = true` in the entry script to redo the 6 GB block
-pass from the TIGER/Line block files instead of `data/derived/`.
+Set `tiger_year` in the entry script: 2026 (default, most recent) builds into
+`data/`, any other release into `data/tiger<year>/` (2023 is committed; it is
+the release the legacy files used). Set `cfg.tf_rebuild_blocks = true` to
+redo the 6 GB block pass instead of reading `derived/`.
+
+When a newer TIGER/Line release becomes the default, change
+`cfg.default_tiger_year` and the `tiger_year` default in
+`census_config_rev1`, and `DEFAULT_YEAR` in `tools/reference_python/`.
 
 ## Output contract (don't break it)
 
@@ -54,7 +60,8 @@ Column definitions are in `README.md`.
   `data/raw/county_fips_changes.csv`). If a new county code appears, the
   build fails; add the code to that CSV with its source.
 - `tools/reference_python/` is an independent reimplementation used to
-  cross-check the MATLAB build. Keep it in step when rules change.
+  cross-check the MATLAB build. Keep it in step when rules change. Each script
+  takes `<cache_folder> <repo_folder> <tiger_year>`.
 
 ## Known facts that are easy to get wrong
 

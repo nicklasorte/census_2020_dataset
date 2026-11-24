@@ -5,7 +5,7 @@ This script reimplements the same rules separately so that the two can be
 compared. It reads the outputs of stage_a.py and writes .mat files with
 scipy.io.savemat.
 
-Usage: python3 stage_b.py <cache_folder> <repo_folder>
+Usage: python3 stage_b.py <cache_folder> <repo_folder> <tiger_year>
 """
 import csv
 import io
@@ -21,8 +21,8 @@ import shapefile
 from shapely.geometry import shape
 from shapely.ops import unary_union
 
-CACHE, REPO = sys.argv[1], sys.argv[2]
-TIGER = 2026
+CACHE, REPO, TIGER = sys.argv[1], sys.argv[2], int(sys.argv[3])
+DATA = f'{REPO}/data' if TIGER == 2026 else f'{REPO}/data/tiger{TIGER}'
 
 
 def reader(path):
@@ -47,13 +47,13 @@ def boundary_latlon(geom):
 
 tracts = pickle.load(open(f'{CACHE}/ref_tracts.pkl', 'rb'))
 tract_pop, tract_ua, tract_urban = {}, {}, {}
-for r in csv.DictReader(open(f'{REPO}/data/derived/tract_block_summary.csv')):
+for r in csv.DictReader(open(f'{DATA}/derived/tract_block_summary.csv')):
     tract_pop[r['GEOID']] = int(r['POP'])
     tract_urban[r['GEOID']] = int(r['URBAN_POP'])
     if r['UACE_MIN'] != 'NaN':
         tract_ua[r['GEOID']] = [int(r['UACE_MIN'])]
 pieces = {}
-for r in csv.DictReader(open(f'{REPO}/data/derived/bg_ua_pieces.csv')):
+for r in csv.DictReader(open(f'{DATA}/derived/bg_ua_pieces.csv')):
     pieces[(r['BG_GEOID'], int(r['UACE']))] = (int(r['POP']), float(r['LAT']), float(r['LON']))
 
 # ---- F2 / F1 ---------------------------------------------------------------
@@ -94,7 +94,7 @@ for i, g in enumerate(geoid):
 F1 = F2[:, :4].copy()
 
 # ---- UA cell ---------------------------------------------------------------
-uac = reader(f'{CACHE}/tl_{TIGER}_us_uac20.zip')
+uac = reader(f'{CACHE}/other/tl_{TIGER}_us_uac20.zip')
 ua_rows = []
 for sr in uac.iterShapeRecords():
     rec = sr.record
@@ -144,7 +144,7 @@ for sr in pea.iterShapeRecords():
                      F2[idx, 1].reshape(-1, 1), F2[idx, 1:3]])
 cell_pea = to_cell(pea_rows, 10)
 
-out = f'{REPO}/tools/reference_python/out'
+out = f'{REPO}/tools/reference_python/out/{TIGER}'
 import os
 os.makedirs(out, exist_ok=True)
 sio.savemat(f'{out}/Cascade_new_full_census_2020.mat', {'new_full_census_2020': F1}, do_compression=True)
