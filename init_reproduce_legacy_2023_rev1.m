@@ -51,7 +51,7 @@ if size(ua, 1) == size(LUC, 1)
         if ~isempty(diff_rows)
             msg = msg + ": " + strjoin(string(ua(diff_rows, 1)), "; ");
         end
-        rows(end + 1, :) = [sprintf("UA cell: column %d", col), msg]; %#ok<AGROW> about 20 rows
+        rows(end + 1, :) = [sprintf("UA cell: column %d", col), msg]; %#ok<SAGROW> about 20 rows
     end
 end
 
@@ -59,7 +59,7 @@ end
 pea = d.pea;
 for col = [1 2 3 5]
     diff_rows = find(~cellfun(@isequaln, pea(:, col), LPEA(:, col)));
-    rows(end + 1, :) = [sprintf("PEA cell: column %d", col), yn(isempty(diff_rows)) + sprintf(" (%d rows differ)", numel(diff_rows))]; %#ok<AGROW> about 20 rows
+    rows(end + 1, :) = [sprintf("PEA cell: column %d", col), yn(isempty(diff_rows)) + sprintf(" (%d rows differ)", numel(diff_rows))]; %#ok<SAGROW> about 20 rows
 end
 legacy_g = vertcat(LPEA{:, 6});
 diff_rows = find(cellfun(@(a, b) ~isequal(a(ismember(a, legacy_g)), b), pea(:, 6), LPEA(:, 6)));
