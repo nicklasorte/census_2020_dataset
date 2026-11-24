@@ -141,6 +141,14 @@ Per-tract differences are in
 with a summary in [`reports/legacy_comparison.md`](reports/legacy_comparison.md).
 Regenerate both with `init_compare_legacy_rev1`.
 
+Run with the same TIGER/Line 2023 files as the legacy build
+(`init_reproduce_legacy_2023_rev1`), the code reproduces the legacy files
+exactly except for the three intended fixes below (2020 file populations,
+520 PEA tracts, two Connecticut water tracts). See
+[`reports/legacy_2023_reproduction.md`](reports/legacy_2023_reproduction.md).
+To build from another release, pass the year as the third argument of
+`census_config_rev1`.
+
 
 - `Cascade_new_full_census_2020.mat` had tract populations assigned to the
   wrong tracts (about 73 million people). It now equals columns 1-4 of the
