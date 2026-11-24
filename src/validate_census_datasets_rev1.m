@@ -107,7 +107,7 @@ add("PEA rows match F2 and the legacy layout", pea_ok, "");
 %%%%%%%%%% Independent sources
 if isfield(checks, "cenpop")
     cp = checks.cenpop;
-    sel = state ~= 9 & state <= 72;   % CenPop covers 50 states, DC, PR; Connecticut uses 2020 counties
+    sel = state ~= 9 & (state <= 56 | state == 72);   % CenPop covers 50 states, DC, PR; Connecticut uses 2020 counties
     [tf, loc] = ismember(geoid(sel), str2double(cp.GEOID));
     ok = all(tf) && isequal(pop(sel), cp.POPULATION(loc));
     add("Tract population equals CenPop2020 (non-Connecticut)", ok, sprintf("%d of %d tracts match", ...

@@ -18,6 +18,7 @@ cfg.cache_folder = cache_folder;
 cfg.raw_folder     = fullfile(repo_folder, "data", "raw");
 cfg.derived_folder = fullfile(repo_folder, "data", "derived");
 cfg.data_folder    = fullfile(repo_folder, "data");
+cfg.report_folder  = fullfile(repo_folder, "reports");
 
 %%%%%%%%%% Source vintages (most recent releases as of 2026-11-23)
 cfg.tiger_year     = 2026;   % TIGER/Line shapefiles: tracts, blocks, urban areas, states
@@ -57,4 +58,5 @@ cfg.expected.num_pea         = 416;
 cfg.tf_redownload    = false;  % true: fetch every source again
 cfg.tf_rebuild_blocks = false; % true: redo the block pass even if data/derived exists
 cfg.download_retries = 5;
+cfg.tf_write_manifest = true; % false: skip hashing the sources (about 6 GB when blocks are cached)
 end

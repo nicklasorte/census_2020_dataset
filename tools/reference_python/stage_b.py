@@ -153,3 +153,11 @@ sio.savemat(f'{out}/Cascade_new_full_census_2023_UA.mat', {'new_full_census_2020
 sio.savemat(f'{out}/cell_urbanarea_census_data_2020_2023.mat', {'cell_ua_census_data_2020': cell_ua_slim}, do_compression=True)
 sio.savemat(f'{out}/cell_pea_census_data_2020_2023.mat', {'cell_pea_census_data_2020': cell_pea}, do_compression=True)
 print('tracts', n, 'pop', F2[:, 3].sum(), 'UA rows', len(ua_rows), 'PEA pop', sum(r[3] for r in pea_rows))
+
+# Tract array as text (same columns as the MATLAB build's census_2020_tracts.csv)
+with open(f'{out}/census_2020_tracts.csv', 'w', newline='') as f:
+    w = csv.writer(f, lineterminator='\n')
+    w.writerow(['GEOID', 'LAT', 'LON', 'POP', 'UACE', 'PEA_NUM', 'URBAN_POP'])
+    for r in F2:
+        w.writerow([f'{int(r[0]):011d}', repr(float(r[1])), repr(float(r[2])), int(r[3]),
+                    'NaN' if np.isnan(r[4]) else int(r[4]), int(r[5]), int(r[6])])

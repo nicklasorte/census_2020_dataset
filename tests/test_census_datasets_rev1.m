@@ -99,6 +99,39 @@ verifyEqual(tc, T.POP, tc.TestData.d.F2(:, 4));
 verifyEqual(tc, T.PEA_NUM, tc.TestData.d.F2(:, 6));
 end
 
+function testBuildReproducesCommittedData(tc)
+% Rebuild everything from data/derived into a temporary folder and compare
+% with the committed outputs. Centroids of polygon boundaries (UA and PEA
+% column 5) are compared within 1e-7 degrees (about 1 cm), because the
+% committed files were cross-checked against an independent implementation;
+% every other value must be identical.
+cfg = tc.TestData.cfg;
+out = string(tempname);
+mkdir(out);
+cleanup = onCleanup(@() rmdir(out, "s"));
+cfg.data_folder = out;
+cfg.report_folder = out;
+cfg.tf_write_manifest = false;
+cfg.tf_rebuild_blocks = false;
+try
+    d = build_census_datasets_rev1(cfg);
+catch err
+    if contains(err.identifier, "census:download")
+        assumeFail(tc, "Sources unavailable: " + err.message);
+    end
+    rethrow(err);
+end
+c = tc.TestData.d;
+verifyEqual(tc, d.F1, c.F1);
+verifyEqual(tc, d.F2, c.F2);
+verifySize(tc, d.ua, size(c.ua));
+verifySize(tc, d.pea, size(c.pea));
+verifyEqual(tc, d.ua(:, [1:4, 6:end]), c.ua(:, [1:4, 6:end]));
+verifyEqual(tc, d.pea(:, [1:4, 6:end]), c.pea(:, [1:4, 6:end]));
+verifyEqual(tc, cell2mat(d.ua(:, 5)), cell2mat(c.ua(:, 5)), "AbsTol", 1e-7);
+verifyEqual(tc, cell2mat(d.pea(:, 5)), cell2mat(c.pea(:, 5)), "AbsTol", 1e-7);
+end
+
 %%%%%%%%%% Build functions
 function testAssignCountyPeaErrorsOnUnknownCounty(tc)
 [~, pea_counties, county_changes] = read_pea_tables_rev1(tc.TestData.cfg);

@@ -66,12 +66,14 @@ tract_csv = array2table(new_full_census_2020, 'VariableNames', ...
 tract_csv.GEOID = compose("%011d", tract_csv.GEOID);
 writetable(tract_csv, fullfile(cfg.data_folder, "census_2020_tracts.csv"));
 
-write_manifest_rev1(cfg);
+if cfg.tf_write_manifest
+    write_manifest_rev1(cfg);
+end
 write_report_rev1(cfg, report);
 end
 
 function write_report_rev1(cfg, report)
-report_folder = fullfile(cfg.repo_folder, "reports");
+report_folder = cfg.report_folder;
 if ~isfolder(report_folder)
     mkdir(report_folder);
 end
