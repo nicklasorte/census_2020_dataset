@@ -132,6 +132,25 @@ verifyEqual(tc, cell2mat(d.ua(:, 5)), cell2mat(c.ua(:, 5)), "AbsTol", 1e-7);
 verifyEqual(tc, cell2mat(d.pea(:, 5)), cell2mat(c.pea(:, 5)), "AbsTol", 1e-7);
 end
 
+function testLegacyComparisonCsv(tc)
+% reports/legacy_comparison_tracts.csv must agree with the committed data.
+cfg = tc.TestData.cfg;
+f = fullfile(cfg.report_folder, "legacy_comparison_tracts.csv");
+o = detectImportOptions(f);
+o = setvartype(o, "GEOID", "string");
+T = readtable(f, o);
+F2 = tc.TestData.d.F2;
+verifyEqual(tc, str2double(T.GEOID), F2(:, 1));
+verifyEqual(tc, T.POP_NEW, F2(:, 4));
+verifyEqual(tc, T.DELTA_POP_2020, T.POP_NEW - T.POP_LEGACY_2020);
+verifyEqual(tc, T.DELTA_POP_UA, T.POP_NEW - T.POP_LEGACY_UA);
+verifyEqual(tc, [T.LAT_NEW T.LON_NEW], F2(:, [2 3]));
+verifyEqual(tc, T.LOCATION_CHANGED, double(T.LAT_NEW ~= T.LAT_LEGACY | T.LON_NEW ~= T.LON_LEGACY));
+verifyTrue(tc, all(T.LOCATION_SHIFT_M(T.LOCATION_CHANGED == 0) == 0));
+verifyEqual(tc, T.PEA_NEW, F2(:, 6));
+verifyEqual(tc, sum(T.DELTA_POP_2020), 0);   % same total, different tracts
+end
+
 %%%%%%%%%% Build functions
 function testAssignCountyPeaErrorsOnUnknownCounty(tc)
 [~, pea_counties, county_changes] = read_pea_tables_rev1(tc.TestData.cfg);

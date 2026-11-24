@@ -78,7 +78,7 @@ s = @(x) sum(x);
 items = [
     "Tracts compared", numel(geoid)
     "Tracts with a different population than legacy Cascade_new_full_census_2020", nnz(cmp.DELTA_POP_2020)
-    "People in the wrong tract in legacy Cascade_new_full_census_2020 (sum of |delta| / 2)", s(abs(cmp.DELTA_POP_2020)) / 2
+    "People in the wrong tract in legacy Cascade_new_full_census_2020 (sum of absolute deltas / 2)", s(abs(cmp.DELTA_POP_2020)) / 2
     "Tracts with a different population than legacy Cascade_new_full_census_2023_UA", nnz(cmp.DELTA_POP_UA)
     "Tracts whose location changed (TIGER/Line 2023 to 2026 internal point)", nnz(moved)
     "Median location shift of changed tracts (m)", median(shift_m(moved))

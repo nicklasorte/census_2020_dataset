@@ -136,6 +136,12 @@ test zone. An independent Python reimplementation in
 
 ## Changes from the legacy Census_Functions files
 
+Per-tract differences are in
+[`reports/legacy_comparison_tracts.csv`](reports/legacy_comparison_tracts.csv),
+with a summary in [`reports/legacy_comparison.md`](reports/legacy_comparison.md).
+Regenerate both with `init_compare_legacy_rev1`.
+
+
 - `Cascade_new_full_census_2020.mat` had tract populations assigned to the
   wrong tracts (about 73 million people). It now equals columns 1-4 of the
   UA file, which was already correct.
