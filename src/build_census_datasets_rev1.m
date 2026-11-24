@@ -42,7 +42,7 @@ fprintf("%d tracts\n", height(tract_tbl));
 
 %%%%%%%%%% Urban area and PEA cells
 uac_shp = read_shapefile_zip_rev1(dl(cfg.url.uac, "other"), unzip_folder);
-[d.ua, ua_contours] = build_ua_cell_rev1(d.F2, ua_pieces, uac_shp);
+[d.ua, ua_contours] = build_ua_cell_rev2(d.F2, ua_pieces, uac_shp);
 d.pea = build_pea_cell_rev1(d.F2, pea_names, cfg.file.pea_shp);
 
 %%%%%%%%%% Validate (errors before anything is saved)

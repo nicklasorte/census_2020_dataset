@@ -1,6 +1,6 @@
-function [cell_ua_census_data_2020, cell_ua_contours] = build_ua_cell_rev1(F2, ua_pieces, uac_shp)
-%BUILD_UA_CELL_REV1 Urban area cell, one row per urban area with tracts.
-%   [cell_ua_census_data_2020, cell_ua_contours] = build_ua_cell_rev1(F2, ua_pieces, uac_shp)
+function [cell_ua_census_data_2020, cell_ua_contours] = build_ua_cell_rev2(F2, ua_pieces, uac_shp)
+%BUILD_UA_CELL_REV2 Urban area cell, one row per urban area with tracts.
+%   [cell_ua_census_data_2020, cell_ua_contours] = build_ua_cell_rev2(F2, ua_pieces, uac_shp)
 %
 %   Columns 1-9 keep the legacy layout used by Generic_Bugsplat
 %   (urban_area_impact_overlap_xor_2020_rev2 reads 1, 2, 4, 6, and 7):
@@ -15,8 +15,10 @@ function [cell_ua_census_data_2020, cell_ua_contours] = build_ua_cell_rev1(F2, u
 %       12) Piece Center [lat lon] (population-weighted block internal points),
 %       13) Parent Tract Geo Id of each piece (matches F2 column 1),
 %       14) UA Population from blocks (sum of column 11).
-%   Rows are sorted by column 4, descending (ties by UACE). Urban areas with
-%   no assigned tract are dropped, as in the legacy file.
+%   Rows are sorted by column 4, descending, with ties kept in shapefile
+%   record order (a stable sort, as the legacy rev8 code did; rev1 broke ties
+%   by UACE). Urban areas with no assigned tract are dropped, as in the
+%   legacy file.
 
 arguments
     F2 (:,7) double
@@ -65,8 +67,7 @@ for ua_idx = 1:num_ua
     cell_all{ua_idx, 14} = sum(p.POP);
 end
 cell_all = cell_all(keep, :);
-order_tbl = table(cell2mat(cell_all(:, 4)), cell2mat(cell_all(:, 2)), 'VariableNames', {'pop', 'uace'});
-[~, order_idx] = sortrows(order_tbl, {'pop', 'uace'}, {'descend', 'ascend'});
+[~, order_idx] = sort(cell2mat(cell_all(:, 4)), "descend");   % sort is stable
 cell_ua_contours = cell_all(order_idx, :);
 cell_ua_census_data_2020 = cell_ua_contours;
 cell_ua_census_data_2020(:, 3) = {zeros(1, 0)};

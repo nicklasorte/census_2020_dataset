@@ -15,7 +15,7 @@ out_folder = fullfile(cfg.cache_folder, "build_2023");
 cfg.derived_folder = fullfile(out_folder, "derived");
 cfg.data_folder = out_folder;
 cfg.report_folder = out_folder;
-cfg.tf_rebuild_blocks = true;    % 2023 block results aren't committed
+cfg.tf_rebuild_blocks = false;   % derived_folder starts empty, so the block pass runs (resuming from cache/block_summary)
 cfg.tf_write_manifest = false;
 if ~isfolder(out_folder)
     mkdir(out_folder);

@@ -113,8 +113,7 @@ for sr in uac.iterShapeRecords():
                     float(F2[idx, 3].sum()), np.array([[cen.y, cen.x]]),
                     F2[idx, 0].reshape(-1, 1), F2[idx, 3].reshape(-1, 1), np.zeros((1, 0)),
                     F2[idx, 1:3], pg, ppop, ppt, ptr, float(ppop.sum())])
-ua_rows.sort(key=lambda r: r[1])
-ua_rows.sort(key=lambda r: -r[3])
+ua_rows.sort(key=lambda r: -r[3])  # stable: ties keep shapefile record order (legacy rule)
 
 
 def to_cell(rows, ncol):
