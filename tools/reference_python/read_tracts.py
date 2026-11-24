@@ -2,8 +2,7 @@
 cache_folder holds tract/, block/, and other/ with the TIGER/Line zips for tiger_year."""
 import sys
 CACHE, REPO, YEAR = sys.argv[1], sys.argv[2], int(sys.argv[3])
-DEFAULT_YEAR = 2026   # most recent release; its outputs live in data/, others in data/tiger<year>/
-DATA = f'{REPO}/data' if YEAR == DEFAULT_YEAR else f'{REPO}/data/tiger{YEAR}'
+DATA = f'{REPO}/data/tiger{YEAR}'   # every release has its own folder
 FIPS = open(f'{REPO}/tools/reference_python/state_fips.txt').read().split()
 import shapefile, zipfile, io, sys, numpy as np, pickle
 fips=FIPS

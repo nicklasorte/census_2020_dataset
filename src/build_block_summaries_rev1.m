@@ -3,9 +3,10 @@ function [tract_sum, ua_pieces, block_checks] = build_block_summaries_rev1(cfg, 
 %   [tract_sum, ua_pieces, block_checks] = build_block_summaries_rev1(cfg, tract_tbl, state_fips, tf_write)
 %
 %   Set tf_write to false to process a subset of states (for example, to
-%   split a long run); only a full run writes the data/derived CSV files.
+%   split a long run); only a full run writes the derived CSV files.
 %
-%   Writes data/derived/tract_block_summary.csv and data/derived/bg_ua_pieces.csv.
+%   Writes tract_block_summary.csv and bg_ua_pieces.csv in cfg.derived_folder
+%   (data/tiger<year>/derived/).
 %   When both files exist and cfg.tf_rebuild_blocks is false, reads them
 %   instead of downloading blocks. Each state's result is also cached in
 %   cache/block_summary/ so that an interrupted run resumes where it stopped.

@@ -10,8 +10,8 @@ end
 function setupOnce(tc)
 repo_folder = string(fileparts(fileparts(mfilename("fullpath"))));
 addpath(fullfile(repo_folder, "src"));
-tc.TestData.cfg = census_config_rev1(repo_folder);
-tc.TestData.d = load_datasets(fullfile(repo_folder, "data"));
+tc.TestData.cfg = census_config_rev1(repo_folder);   % default release (2026)
+tc.TestData.d = load_datasets(tc.TestData.cfg.data_folder);
 tc.TestData.cfg2023 = census_config_rev1(repo_folder, fullfile(repo_folder, "cache"), 2023);
 tc.TestData.d2023 = load_datasets(tc.TestData.cfg2023.data_folder);
 end
@@ -104,7 +104,7 @@ verifyEqual(tc, T.PEA_NUM, tc.TestData.d.F2(:, 6));
 end
 
 function testBuildReproducesCommittedData(tc)
-% Rebuild everything from data/derived into a temporary folder and compare
+% Rebuild everything from data/tiger2026/derived into a temporary folder and compare
 % with the committed outputs. Centroids of polygon boundaries (UA and PEA
 % column 5) are compared within 1e-7 degrees (about 1 cm), because the
 % committed files were cross-checked against an independent implementation;
@@ -137,7 +137,7 @@ verifyEqual(tc, cell2mat(d.pea(:, 5)), cell2mat(c.pea(:, 5)), "AbsTol", 1e-7);
 end
 
 function testLegacyComparisonCsv(tc)
-% reports/legacy_comparison_tracts.csv must agree with the committed data.
+% reports/tiger2026/legacy_comparison_tracts.csv must agree with the committed data.
 cfg = tc.TestData.cfg;
 f = fullfile(cfg.report_folder, "legacy_comparison_tracts.csv");
 o = detectImportOptions(f);
@@ -203,7 +203,7 @@ end
 
 function testBlockSummaryMatchesCommittedCsv(tc)
 % Rerun the block pass for DC and Connecticut (repeated water tract codes)
-% from the cached TIGER/Line files and compare with data/derived.
+% from the cached TIGER/Line files and compare with data/tiger2026/derived.
 cfg = tc.TestData.cfg;
 for fips = ["11", "09"]
     block_zip = fullfile(cfg.cache_folder, "block", sprintf("tl_%d_%s_tabblock20.zip", cfg.tiger_year, fips));

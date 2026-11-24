@@ -2,10 +2,9 @@
 cache_folder holds tract/, block/, and other/ with the TIGER/Line zips for tiger_year."""
 import sys
 CACHE, REPO, YEAR = sys.argv[1], sys.argv[2], int(sys.argv[3])
-DEFAULT_YEAR = 2026   # most recent release; its outputs live in data/, others in data/tiger<year>/
-DATA = f'{REPO}/data' if YEAR == DEFAULT_YEAR else f'{REPO}/data/tiger{YEAR}'
+DATA = f'{REPO}/data/tiger{YEAR}'   # every release has its own folder
 FIPS = open(f'{REPO}/tools/reference_python/state_fips.txt').read().split()
-"""Write stage_a.py results to data/derived CSV files (same columns as the MATLAB build)."""
+"""Write stage_a.py results to data/tiger<year>/derived CSV files (same columns as the MATLAB build)."""
 import csv, os, pickle, sys
 tracts = pickle.load(open(f'{CACHE}/ref_tracts.pkl', 'rb'))
 tract_pop, tract_ua, pieces = pickle.load(open(f'{CACHE}/ref_stage_a.pkl', 'rb'))

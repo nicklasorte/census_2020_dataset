@@ -5,7 +5,7 @@ function [cmp, summary] = compare_legacy_datasets_rev1(cfg, d)
 %   cfg: struct from census_config_rev1 (cfg.url.legacy_* name the files).
 %   d:   struct with F2 (new tract array) and pea (new PEA cell).
 %   cmp: one row per tract (new file order), written to
-%        reports/legacy_comparison_tracts.csv:
+%        legacy_comparison_tracts.csv in cfg.report_folder (reports/tiger<year>/):
 %          GEOID
 %          POP_NEW, POP_LEGACY_2020, DELTA_POP_2020 (new - legacy,
 %            Cascade_new_full_census_2020.mat), POP_LEGACY_UA, DELTA_POP_UA
@@ -16,10 +16,11 @@ function [cmp, summary] = compare_legacy_datasets_rev1(cfg, d)
 %          UACE_NEW, UACE_LEGACY, UACE_CHANGED
 %          PEA_NEW, PEA_LEGACY (NaN if the legacy PEA cell left the tract
 %            out), PEA_CHANGED
-%   summary: table of headline counts, written to reports/legacy_comparison.md.
+%   summary: table of headline counts (init_compare_legacy_rev1 writes it to
+%            legacy_comparison.md).
 %
-%   The legacy files came from TIGER/Line 2023; the new ones from 2026. The
-%   tract list is identical, so every difference is in a value, not a tract.
+%   The legacy files came from TIGER/Line 2023; d comes from cfg.tiger_year.
+%   The tract list is identical, so every difference is in a value, not a tract.
 
 arguments
     cfg (1,1) struct

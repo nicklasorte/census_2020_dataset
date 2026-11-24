@@ -15,18 +15,24 @@ the outputs are all committed. The large TIGER/Line downloads live in
 ## Run it
 
 ```matlab
-init_build_census_datasets_rev1        % build, validate, save (minutes; uses data/derived)
+init_build_census_datasets_rev1        % build, validate, save (minutes; uses data/tiger<year>/derived)
 results = runtests("tests")            % tests
 ```
 
-Set `tiger_year` in the entry script: 2026 (default, most recent) builds into
-`data/`, any other release into `data/tiger<year>/` (2023 is committed; it is
-the release the legacy files used). Set `cfg.tf_rebuild_blocks = true` to
-redo the 6 GB block pass instead of reading `derived/`.
+Every TIGER/Line release builds into `data/tiger<year>/` and
+`reports/tiger<year>/`. Set `tiger_year` in the entry script (2026 is the
+default and most recent; 2023 is the release the legacy files used). Both are
+committed. Set `cfg.tf_rebuild_blocks = true` to redo the 6 GB block pass
+instead of reading `derived/`.
 
-When a newer TIGER/Line release becomes the default, change
-`cfg.default_tiger_year` and the `tiger_year` default in
-`census_config_rev1`, and `DEFAULT_YEAR` in `tools/reference_python/`.
+To add a release, build it with its year, run the tests, and commit its
+`data/tiger<year>/` and `reports/tiger<year>/` folders. Don't overwrite
+another release's folder.
+
+To make a newer release the default, change `cfg.default_tiger_year` and the
+`tiger_year` default in `census_config_rev1`, and the default year in the
+entry scripts. The tests load the default release, so update the hard-coded
+`tiger2026` paths in their comments too.
 
 ## Output contract (don't break it)
 

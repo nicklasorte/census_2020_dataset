@@ -5,7 +5,7 @@ the decisions made along the way. For how to run the build and what each
 column holds, see [README.md](README.md).
 
 **Status**: Done. The build, checks, tests, and outputs are in this
-repository: TIGER/Line 2026 in `data/` and TIGER/Line 2023 in
+repository: TIGER/Line 2026 in `data/tiger2026/` and TIGER/Line 2023 in
 `data/tiger2023/`. Last full MATLAB run: 2026-11-24, R2025b.
 
 ## Goal
@@ -46,14 +46,14 @@ calls) without code changes:
 | D5 | PEA column 9? | Keep it as latitude only for now; tract `[lat lon]` is the new column 10. |
 | D6 | Smaller unit for urban areas? | Add block-group-level urban pieces as UA columns 10-14, built from blocks, so the urban population is exact. Columns 6-7 stay tract-level because Generic_Bugsplat matches them against the tract GEOIDs of a zone. |
 | D7 | New columns? | Only at the end of each output: tract array columns 6-7, UA cell columns 10-14, PEA cell column 10. |
-| D8 | Which release to commit? | Both: 2026 (most recent) in `data/`, and 2023 (the legacy release) in `data/tiger2023/`. The 2023 build reproduces the legacy files except the three intended fixes. |
+| D8 | Which release to commit? | Both, each in its own folder: 2026 (most recent) in `data/tiger2026/`, and 2023 (the legacy release) in `data/tiger2023/`. Future releases go in `data/tiger<year>/`. The 2023 build reproduces the legacy files except the three intended fixes. |
 
 ## Verification
 
 - `validate_census_datasets_rev1` runs inside the build and stops it before
-  saving if a check fails. Results: [reports/validation_report.md](reports/validation_report.md).
+  saving if a check fails. Results: [reports/tiger2026/validation_report.md](reports/tiger2026/validation_report.md).
 - The MATLAB block pass over all 56 state-equivalents was run on 2026-11-23.
-  Its tract results equal the committed `data/derived/tract_block_summary.csv`
+  Its tract results equal the committed `data/tiger2026/derived/tract_block_summary.csv`
   exactly, and its block group points agree to within 5e-13 degrees.
 - An independent Python implementation (`tools/reference_python/`) produced
   the committed `.mat` files. The MATLAB build reproduces them exactly,

@@ -21,21 +21,23 @@ Requires MATLAB R2025b with the Mapping Toolbox. The first run downloads
 about 150 MB (tracts, urban areas, check files) into `cache/`. To redo the
 block pass from the TIGER/Line block files (about 6 GB), set
 `cfg.tf_rebuild_blocks = true` in the entry script; otherwise the build reads
-the committed block results in `data/derived/`.
+the committed block results in `data/tiger<year>/derived/`.
 
 ## Outputs
 
-Two builds are committed, with the same file names and columns:
+Each TIGER/Line release has its own folder, `data/tiger<year>/`, with the
+same file names and columns. Two are committed:
 
-- `data/`: TIGER/Line 2026, the most recent release (default).
+- `data/tiger2026/`: TIGER/Line 2026, the most recent release (the default).
 - `data/tiger2023/`: TIGER/Line 2023, the release the legacy Census_Functions
   files used. Use it to keep tract locations identical to past results.
 
 Populations, urban area codes, and PEAs are the same in both (every release
 carries the 2020 Census counts); only the tract internal points differ for
-about 19,700 tracts. To rebuild either one, set `tiger_year` in
+about 19,700 tracts. To build a release, set `tiger_year` in
 `init_build_census_datasets_rev1`. Each folder has its own `derived/` block
-results, and `data/tiger2023/MANIFEST.csv` lists the 2023 sources.
+results and a `MANIFEST.csv` of its sources, and each release's reports are in
+`reports/tiger<year>/`.
 
 | File | Variable | Size |
 |---|---|---|
@@ -128,7 +130,9 @@ One row per PEA, 1-416, in number order.
 ## Checks
 
 The build stops before saving if any check fails. The results are in
-[`reports/validation_report.md`](reports/validation_report.md). The checks
+[`reports/tiger2026/validation_report.md`](reports/tiger2026/validation_report.md)
+(2026) and [`reports/tiger2023/validation_report.md`](reports/tiger2023/validation_report.md)
+(2023). The checks
 include:
 
 - Population totals equal the published 2020 counts exactly: 331,449,281
@@ -140,22 +144,22 @@ include:
   tract array.
 
 The tests also rerun the block pass for DC and Connecticut and compare it
-with `data/derived/`, and they replay the Generic_Bugsplat zone workflow on a
+with `data/tiger2026/derived/`, and they replay the Generic_Bugsplat zone workflow on a
 test zone. An independent Python reimplementation in
 `tools/reference_python/` produces the same outputs.
 
 ## Changes from the legacy Census_Functions files
 
 Per-tract differences are in
-[`reports/legacy_comparison_tracts.csv`](reports/legacy_comparison_tracts.csv),
-with a summary in [`reports/legacy_comparison.md`](reports/legacy_comparison.md).
+[`reports/tiger2026/legacy_comparison_tracts.csv`](reports/tiger2026/legacy_comparison_tracts.csv),
+with a summary in [`reports/tiger2026/legacy_comparison.md`](reports/tiger2026/legacy_comparison.md).
 Regenerate both with `init_compare_legacy_rev1`.
 
 Run with the same TIGER/Line 2023 files as the legacy build
 (`init_reproduce_legacy_2023_rev1`), the code reproduces the legacy files
 exactly except for the three intended fixes below (2020 file populations,
 520 PEA tracts, two Connecticut water tracts). See
-[`reports/legacy_2023_reproduction.md`](reports/legacy_2023_reproduction.md).
+[`reports/tiger2023/legacy_reproduction.md`](reports/tiger2023/legacy_reproduction.md).
 To build from another release, pass the year as the third argument of
 `census_config_rev1`.
 
@@ -182,5 +186,6 @@ To build from another release, pass the year as the third argument of
 | [2020 Centers of Population by tract](https://www2.census.gov/geo/docs/reference/cenpop2020/tract/CenPop2020_Mean_TR.txt) | Population check |
 | [2026 Gazetteer tract file](https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2026_Gazetteer/2026_Gaz_tracts_national.zip) | Internal point check |
 
-`data/raw/MANIFEST.csv` records the size and SHA-256 hash of every source
-file used for the committed outputs.
+`data/tiger<year>/MANIFEST.csv` records the size and SHA-256 hash of every
+source file used for that release's outputs. `data/raw/` holds the source
+files shared by all releases (FCC PEA shapefile and lists).

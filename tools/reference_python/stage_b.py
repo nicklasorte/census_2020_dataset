@@ -22,7 +22,7 @@ from shapely.geometry import shape
 from shapely.ops import unary_union
 
 CACHE, REPO, TIGER = sys.argv[1], sys.argv[2], int(sys.argv[3])
-DATA = f'{REPO}/data' if TIGER == 2026 else f'{REPO}/data/tiger{TIGER}'
+DATA = f'{REPO}/data/tiger{TIGER}'   # every release has its own folder
 
 
 def reader(path):

@@ -2,8 +2,8 @@ function [d, report] = build_census_datasets_rev1(cfg)
 %BUILD_CENSUS_DATASETS_REV1 Build, validate, and save every dataset.
 %   [d, report] = build_census_datasets_rev1(cfg)
 %
-%   Outputs, saved in cfg.data_folder (data/ for the most recent TIGER/Line
-%   release, data/tiger<year>/ otherwise) with the legacy file and variable names:
+%   Outputs, saved in cfg.data_folder (data/tiger<year>/) with the legacy
+%   file and variable names:
 %     Cascade_new_full_census_2020.mat          new_full_census_2020      (F1)
 %     Cascade_new_full_census_2023_UA.mat       new_full_census_2020      (F2)
 %     cell_urbanarea_census_data_2020_2023.mat  cell_ua_census_data_2020

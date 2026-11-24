@@ -1,12 +1,14 @@
 %INIT_COMPARE_LEGACY_REV1 Compare the rebuilt datasets with the legacy Census_Functions files.
-%   Writes reports/legacy_comparison_tracts.csv (one row per tract) and
-%   reports/legacy_comparison.md (summary and largest differences).
+%   Writes reports/tiger<year>/legacy_comparison_tracts.csv (one row per
+%   tract) and reports/tiger<year>/legacy_comparison.md (summary and largest
+%   differences) for the release set by tiger_year.
 %   Downloads the three legacy files from GitHub into cache/legacy.
 
 clear; close all;
 repo_folder = string(fileparts(mfilename("fullpath")));
 addpath(fullfile(repo_folder, "src"));
-cfg = census_config_rev1(repo_folder);
+tiger_year = 2026;   % which committed release to compare with the legacy files
+cfg = census_config_rev1(repo_folder, fullfile(repo_folder, "cache"), tiger_year);
 
 d.F2 = load(fullfile(cfg.data_folder, "Cascade_new_full_census_2023_UA.mat"), "new_full_census_2020").new_full_census_2020;
 [cmp, summary] = compare_legacy_datasets_rev1(cfg, d);

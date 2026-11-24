@@ -1,9 +1,9 @@
-"""Python cross-check of compare_legacy_datasets_rev1.m. Usage: compare_legacy.py <legacy_folder> <repo_folder>"""
+"""Python cross-check of compare_legacy_datasets_rev1.m. Usage: compare_legacy.py <legacy_folder> <repo_folder> <tiger_year>"""
 import csv, sys
 import numpy as np, scipy.io as sio
 from pyproj import Geod
-L, REPO = sys.argv[1], sys.argv[2]
-F2 = sio.loadmat(f'{REPO}/data/Cascade_new_full_census_2023_UA.mat')['new_full_census_2020']
+L, REPO, YEAR = sys.argv[1], sys.argv[2], int(sys.argv[3])
+F2 = sio.loadmat(f'{REPO}/data/tiger{YEAR}/Cascade_new_full_census_2023_UA.mat')['new_full_census_2020']
 L20 = sio.loadmat(f'{L}/Cascade_new_full_census_2020.mat')['new_full_census_2020']
 LUA = sio.loadmat(f'{L}/Cascade_new_full_census_2023_UA.mat')['new_full_census_2020']
 P = sio.loadmat(f'{L}/cell_pea_census_data_2020_2023.mat')['cell_pea_census_data_2020']
@@ -26,7 +26,7 @@ def f(v):
     if isinstance(v, int): return str(v)
     if np.isnan(v): return 'NaN'
     return str(int(v)) if float(v).is_integer() else repr(float(v))
-with open(f'{REPO}/reports/legacy_comparison_tracts.csv', 'w', newline='') as fh:
+with open(f'{REPO}/reports/tiger{YEAR}/legacy_comparison_tracts.csv', 'w', newline='') as fh:
     w = csv.writer(fh, lineterminator='\n')
     w.writerow(['GEOID', 'POP_NEW', 'POP_LEGACY_2020', 'DELTA_POP_2020', 'POP_LEGACY_UA', 'DELTA_POP_UA',
                 'LAT_NEW', 'LON_NEW', 'LAT_LEGACY', 'LON_LEGACY', 'LOCATION_CHANGED', 'LOCATION_SHIFT_M',
