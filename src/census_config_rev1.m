@@ -1,6 +1,6 @@
-function cfg = census_config_rev1(repo_folder, cache_folder)
+function cfg = census_config_rev1(repo_folder, cache_folder, tiger_year)
 %CENSUS_CONFIG_REV1 Settings, source URLs, and expected values for the build.
-%   cfg = census_config_rev1(repo_folder, cache_folder)
+%   cfg = census_config_rev1(repo_folder, cache_folder, tiger_year)
 %
 %   Every URL and expected value is listed here so that one file shows what
 %   the build depends on. Change tiger_year to rebuild from a newer
@@ -10,6 +10,7 @@ function cfg = census_config_rev1(repo_folder, cache_folder)
 arguments
     repo_folder (1,1) string
     cache_folder (1,1) string = fullfile(repo_folder, "cache")
+    tiger_year (1,1) double {mustBeInteger, mustBeInRange(tiger_year, 2023, 2100)} = 2026
 end
 
 cfg = struct();
@@ -21,15 +22,19 @@ cfg.data_folder    = fullfile(repo_folder, "data");
 cfg.report_folder  = fullfile(repo_folder, "reports");
 
 %%%%%%%%%% Source vintages (most recent releases as of 2026-11-23)
-cfg.tiger_year     = 2026;   % TIGER/Line shapefiles: tracts, blocks, urban areas, states
-cfg.gazetteer_year = 2026;   % Gazetteer tract file, used only as a check
+cfg.tiger_year     = tiger_year; % TIGER/Line shapefiles: tracts, blocks, urban areas, states (2026 = most recent)
+cfg.gazetteer_year = tiger_year; % Gazetteer tract file of the same vintage, used only as a check
 
 ty = string(cfg.tiger_year);
 tiger = "https://www2.census.gov/geo/tiger/TIGER" + ty + "/";
 cfg.url.state  = tiger + "STATE/tl_" + ty + "_us_state.zip";
 cfg.url.tract  = tiger + "TRACT/tl_" + ty + "_%s_tract.zip";          % %s = state FIPS
 cfg.url.block  = tiger + "TABBLOCK20/tl_" + ty + "_%s_tabblock20.zip"; % %s = state FIPS
-cfg.url.uac    = tiger + "UAC20/tl_" + ty + "_us_uac20.zip";
+uac_dir = "UAC20/";
+if cfg.tiger_year <= 2023
+    uac_dir = "UAC/";   % TIGER2023 keeps the 2020 urban areas in UAC/; 2024 and later use UAC20/
+end
+cfg.url.uac    = tiger + uac_dir + "tl_" + ty + "_us_uac20.zip";
 
 %%%%%%%%%% Independent check sources (not used to build the outputs)
 zy = string(cfg.gazetteer_year);
